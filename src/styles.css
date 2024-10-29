@@ -1,3 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap");
+
 * {
-  background-color: white;
+  color: whitesmoke;
+  background-image: url("./images/background1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #eee;
+}
+
+#Header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+svg {
+  height: 80px;
+  width: 80px;
+  fill: #ffffff;
+}
+
+input[type="search"] {
+  width: 50%;
+  max-width: 300px;
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-top: 10px;
+  color: whitesmoke;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 25px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.7);
+  outline: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+input[type="search"]:hover {
+  transform: scale(1.05);
+  border-bottom-color: #ffffff;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+input[type="search"]:focus {
+  border-bottom: 3px solid #ffffff;
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  input[type="search"] {
+    width: 90%;
+    font-size: 1.2rem;
+  }
 }
