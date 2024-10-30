@@ -105,6 +105,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 .info {
   display: flex;
+  margin-bottom: 100px;
   gap: 20px;
 }
 .mainTemp {
@@ -196,6 +197,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .wrapper {
   max-width: 90vw;
   width: 100%;
+
   position: relative;
 }
 
@@ -261,6 +263,7 @@ input[type="search"]::-webkit-search-cancel-button {
   scroll-snap-align: start;
   height: 340px;
   list-style: none;
+  margin-bottom: 100px;
   background: #85858563;
   border-radius: 8px;
   display: flex;
