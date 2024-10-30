@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css" />
     <title>WeatherWeb</title>
   </head>
-  <body>
+  <body class="overlayBlack">
     <div id="Header">
       <h1>WeatherWeb</h1>
       <svg
@@ -23,5 +23,25 @@
     </div>
     <h2>Location</h2>
     <input type="search" id="location" name="placeSearch" />
+
+    <div class="info">
+      <div class="main">
+        <h1 class="location">London, United Kingdom</h1>
+        <h2 class="description">Mostly Sunny</h2>
+        <h1 class="mainTemp">23°C</h1>
+        <div class="feelslike">Feels Like: 23°C</div>
+        <div class="wind">Wind: 15mph</div>
+        <div class="humidity">Humidity:10%</div>
+        <div class="cloudcover">Cloud Cover: 63%</div>
+        <div class="uvindex">UV Index: 4</div>
+      </div>
+    </div>
+
+    <div class="cards"></div>
+    <div class="wrapper">
+      <i id="left"></i>
+      <div id="carousel" class="carousel"></div>
+      <i id="right"></i>
+    </div>
   </body>
 </html>

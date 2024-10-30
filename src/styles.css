@@ -14,31 +14,61 @@
   padding: 0;
 }
 
+.overlayBlack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 body {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   padding: 20px;
   min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Adds a soft tint to background */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 h1 {
   text-align: center;
   font-size: 3rem;
   letter-spacing: 1px;
-  margin: 0;
+  margin-bottom: 0.5rem;
+  z-index: 2;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
   font-size: 2rem;
   color: #eee;
+  z-index: 2;
+  margin-top: 0.2rem;
 }
 
 #Header {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  z-index: 2;
 }
 
 svg {
@@ -50,46 +80,194 @@ svg {
 input[type="search"] {
   width: 50%;
   max-width: 300px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 10px;
   margin-top: 10px;
   color: whitesmoke;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 25px;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
   outline: none;
   text-align: center;
   transition: all 0.3s ease;
 }
 
+input[type="search"]:hover,
+input[type="search"]:focus {
+  transform: scale(1.05);
+  border-bottom-color: #ffffff;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
-
-input[type="search"]:hover {
-  transform: scale(1.05);
-  border-bottom-color: #ffffff;
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+.info {
+  display: flex;
+  gap: 20px;
+}
+.mainTemp {
+  font-size: 8vw;
+  z-index: 2;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
-input[type="search"]:focus {
-  border-bottom: 3px solid #ffffff;
-  outline: none;
+.main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.description {
+  grid-column: span 2;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.location {
+  grid-column: span 2;
+  font-size: 1.2rem;
+  font-size: 220%;
+  color: #ddd;
+}
+.cards,
+.feelslike,
+.wind,
+.humidity,
+.cloudcover,
+.uvindex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #ddd;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.card > *,
+.card > div > * {
+  background: none;
+}
+
+.card > div {
+  display: flex;
+  align-items: center;
+}
+
+.card > div > svg {
+  height: 40px;
+  width: 40px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  border-radius: 10px;
 }
 
 @media (max-width: 600px) {
   h1 {
     font-size: 2.5rem;
   }
-
   h2 {
-    font-size: 1.5rem;
-    text-align: center;
+    font-size: 1.3rem;
   }
-
   input[type="search"] {
     width: 90%;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
+  .mainTemp {
+    font-size: 12vw;
+  }
+}
+.wrapper {
+  max-width: 90vw;
+  width: 100%;
+  position: relative;
+}
+
+.wrapper i {
+  height: 50px;
+  width: 50px;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  font-size: 1.25 rem;
+  transform: translateY(-50%);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.wrapper i:first-child {
+  left: -22px;
+}
+
+.wrapper i:last-child {
+  right: -22px;
+}
+
+.wrapper .carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 6) - 12px);
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: 0;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel :where(.card, .img) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.carousel.no-transition {
+  scroll-behavior: auto;
+}
+
+.carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel .card {
+  scroll-snap-align: start;
+  height: 340px;
+  list-style: none;
+  background: #85858563;
+  border-radius: 8px;
+  display: flex;
+  cursor: pointer;
+  width: 98%;
+  padding-bottom: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
